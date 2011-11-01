@@ -1,0 +1,24 @@
+Sentiment Summarizer
+====================
+
+A chrome extension that shows a sentiment summary for web pages which
+contain opinionated texts marked with Review micro formats (see schema.org). 
+It features a hack that allows to analyze twitter feeds: 
+1) Issue a query on twitter; 2) press the page reload button; 
+3) wait for up to 5 sec until the page action is triggered. 
+
+The sentiment summarizer extension comprises three components: 
+
+  * Content script
+    `contentScript.js` scrapes the review texts from the web page and submits
+    a post request to sentimentanalyzer.appspot.com. The resulting scores are
+    send to the background page.
+  * background.html
+    The background page listens for messages from the content script. When a 
+    message arrives the review stats are stored in an associative array mapping
+    a tab id to the review stats. Finally, it calls the `show` method of 
+    the popup page action.
+  * popup.html
+    The popup page action retrieves the tab stats from the background page
+    and displays them.
+

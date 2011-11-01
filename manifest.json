@@ -1,0 +1,73 @@
+{
+
+  "name": "Sentiment Summarizer",
+  "version": "0.1",
+  "description": "Get the Latest news straight from your address bar",
+  "icons": { "16": "icons/icon16.png",
+             "48": "icons/icon48.png",
+            "128": "icons/icon128.png" },
+  "default_locale": "en",
+
+  // http://code.google.com/chrome/extensions/pageAction.html
+  "page_action": {
+    "default_icon":  "icons/icon19.png", // optional
+    "default_title": "Sentiment Summary",     // optional; shown in tooltip
+    "default_popup": "src/popup.html"    // optional
+  },
+
+
+  /*****************************************************************************
+   PERMISSIONS
+   ****************************************************************************/
+
+  // http://code.google.com/chrome/extensions/manifest.html#permissions
+  "permissions": [
+    "http://sentimentanalyzer.appspot.com/api/*",
+    "bookmarks", // http://code.google.com/chrome/extensions/bookmarks.html
+    "chrome://favicon/",
+    "clipboardRead", // document.execCommand('paste').
+    "clipboardWrite", // document.execCommand('copy' OR 'cut')
+    "contextMenus", //http:///code.google.com/chrome/extensions/contextMenus.html
+    "cookies", // http://code.google.com/chrome/extensions/cookies.html
+    // "experimental", // http://code.google.com/chrome/extensions/dev/experimental.html
+    "fileBrowserHandler", // http://goo.gl/GqbrP
+    "geolocation", // http://dev.w3.org/geo/api/spec-source.html
+    "history", // http://code.google.com/chrome/extensions/history.html
+    "idle", // http://code.google.com/chrome/extensions/idle.html
+    "management", // http://code.google.com/chrome/extensions/management.html
+    "notifications", // code.google.com/chrome/extensions/notifications.html
+    "tabs", // http://code.google.com/chrome/extensions/tabs.html +windows.html
+    "tts", // http://code.google.com/chrome/extensions/tts.html
+    "ttsEngine", // http://code.google.com/chrome/extensions/ttsEngine.html
+    "unlimitedStorage"
+  ],
+
+  /*****************************************************************************
+   Background page and Content script
+   ****************************************************************************/
+
+  // http://code.google.com/chrome/extensions/background_pages.html */
+  "background_page": "background.html",
+  
+  "content_scripts": [
+    {
+      "matches": ["http://tupalo.com/*",
+                  "http://twitter.com/*"
+                  ],
+      //"css": ["src/contentStyle.css"],
+      "js": ["lib/jquery.min.js", "src/contentScript.js"]
+    }
+  ],
+  
+
+  /*****************************************************************************
+   FINISHING AND DISTRIBUTING YOUR EXTENSION
+   ****************************************************************************/
+
+  // http://code.google.com/chrome/extensions/autoupdate.html */
+  // "update_url": "http://myhost.com/mytestextension/updates.xml"
+
+  // leave this here so you don't get trailing comma errors above
+  "null": []
+
+}

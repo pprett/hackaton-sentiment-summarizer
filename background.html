@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+ * Copyright (c) 2010 The Chromium Authors. All rights reserved.  Use of this
+ * source code is governed by a BSD-style license that can be found in the
+ * LICENSE file.
+-->
+<html>
+  <head>
+    <script>
+
+      var num_pos = {};
+      var num_reviews = {};
+
+      function onRequest(request, sender, sendResponse) {
+        console.log(request);        
+        // Show the page action for the tab that the sender (content script)
+        // was on.
+        if (request.action == 'showPageAction') {
+          num_pos[sender.tab.id] = request.num_pos;
+          num_reviews[sender.tab.id] = request.num_reviews;
+          console.log("data set!");
+          chrome.pageAction.show(sender.tab.id);
+        }
+
+        // Return nothing to let the connection be cleaned up.
+        sendResponse({});
+      };
+
+      // Listen for the content script to send a message to the background page.
+      chrome.extension.onRequest.addListener(onRequest);
+    </script>
+  </head>
+</html>
