@@ -11,9 +11,9 @@ console.log(window.location.href);
 function scrape() {
     console.log("scraping...");
     var review_divs = [];
-    if (window.location.href.match(/^http:\/\/twitter\.com/)) {
+    if (window.location.href.match(/^https:\/\/twitter\.com/)) {
         console.log('looking for tweets twitter');
-        review_divs = document.querySelectorAll('div.tweet-row > div.tweet-text');
+        review_divs = document.querySelectorAll('p.tweet-text');
 
     } else {
         console.log('looking for micro-formats');
@@ -43,7 +43,7 @@ function scrape() {
     if (reviews.length > 0) {
 
         var data = JSON.stringify({data: reviews});
-        window.$.post('http://sentimentanalyzer.appspot.com/api/classify.json',
+        window.$.post('https://sentimentanalyzer.appspot.com/api/classify.json',
 		 data,
 		 function(res) {
 		     console.log("Got results");

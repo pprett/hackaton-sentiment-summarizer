@@ -8,8 +8,6 @@
             "128": "icons/icon128.png" },
   "default_locale": "en",
 
-  "content_security_policy": "script-src 'self' 'unsafe-eval'",
-
   // http://code.google.com/chrome/extensions/pageAction.html
   "page_action": {
     "default_icon":  "icons/icon19.png", // optional
@@ -24,7 +22,7 @@
 
   // http://code.google.com/chrome/extensions/manifest.html#permissiosn
   "permissions": [
-    "http://sentimentanalyzer.appspot.com/api/*",
+    "https://sentimentanalyzer.appspot.com/api/*",
     "bookmarks", // http://code.google.com/chrome/extensions/bookmarks.html
     "chrome://favicon/",
     "clipboardRead", // document.execCommand('paste').
@@ -56,7 +54,8 @@
   "content_scripts": [
     {
       "matches": ["http://tupalo.com/*",
-                  "http://twitter.com/*"
+                  "http://tupalo.net/*",
+                  "https://twitter.com/*"
                   ],
       //"css": ["src/contentStyle.css"],
       "js": ["lib/jquery.min.js", "src/contentScript.js"]

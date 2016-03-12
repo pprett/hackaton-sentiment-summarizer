@@ -3,9 +3,14 @@
  * the stats. Display stats using Google image API.
  */
 function loader(){
+  console.log("Loader is loaded");
   chrome.tabs.getSelected(null, function(tab) {
+    console.log("Drawing a chart...");
     var tab_id = tab.id;
     var bg = chrome.extension.getBackgroundPage();
+    console.log("tab_id:" + tab_id);
+      console.log(bg);
+      console.log(bg)
     var num_reviews = bg.num_reviews[tab_id];
     var num_pos = bg.num_pos[tab_id];
     bg.console.log("Draw chart with: " + num_pos + " - " + num_reviews);
