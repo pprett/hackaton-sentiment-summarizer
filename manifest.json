@@ -1,5 +1,5 @@
 {
-
+  "manifest_version": 2,
   "name": "Sentiment Summarizer",
   "version": "0.1",
   "description": "Get the Latest news straight from your address bar",
@@ -7,6 +7,8 @@
              "48": "icons/icon48.png",
             "128": "icons/icon128.png" },
   "default_locale": "en",
+
+  "content_security_policy": "script-src 'self' 'unsafe-eval'",
 
   // http://code.google.com/chrome/extensions/pageAction.html
   "page_action": {
@@ -20,7 +22,7 @@
    PERMISSIONS
    ****************************************************************************/
 
-  // http://code.google.com/chrome/extensions/manifest.html#permissions
+  // http://code.google.com/chrome/extensions/manifest.html#permissiosn
   "permissions": [
     "http://sentimentanalyzer.appspot.com/api/*",
     "bookmarks", // http://code.google.com/chrome/extensions/bookmarks.html
@@ -30,7 +32,7 @@
     "contextMenus", //http:///code.google.com/chrome/extensions/contextMenus.html
     "cookies", // http://code.google.com/chrome/extensions/cookies.html
     // "experimental", // http://code.google.com/chrome/extensions/dev/experimental.html
-    "fileBrowserHandler", // http://goo.gl/GqbrP
+    //"fileBrowserHandler", // http://goo.gl/GqbrP
     "geolocation", // http://dev.w3.org/geo/api/spec-source.html
     "history", // http://code.google.com/chrome/extensions/history.html
     "idle", // http://code.google.com/chrome/extensions/idle.html
@@ -47,8 +49,10 @@
    ****************************************************************************/
 
   // http://code.google.com/chrome/extensions/background_pages.html */
-  "background_page": "background.html",
-  
+  "background": {
+    "page": "background.html"
+  },
+
   "content_scripts": [
     {
       "matches": ["http://tupalo.com/*",
@@ -58,7 +62,7 @@
       "js": ["lib/jquery.min.js", "src/contentScript.js"]
     }
   ],
-  
+
 
   /*****************************************************************************
    FINISHING AND DISTRIBUTING YOUR EXTENSION
